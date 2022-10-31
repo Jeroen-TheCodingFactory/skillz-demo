@@ -66,6 +66,10 @@
     height: 5rem;
     transition:0.4s all;
     border: 0.2rem dashed #001252;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
 
 }
 

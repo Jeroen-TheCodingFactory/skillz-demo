@@ -57,7 +57,8 @@ const questions = [
         "question": "Hoe goed ben je nu in React?",
         "rating": 0,
         'previous': "/vragen/7",
-        "next": "/done",
+        "next": "/outro",
+        "last": true,
     },
 ];
 

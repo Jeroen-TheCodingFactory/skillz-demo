@@ -1,5 +1,5 @@
 import React from "react";
-import {withRouter , Link} from "react-router-dom";
+import { withRouter, Link } from "react-router-dom";
 import "./Question.css";
 
 class Question extends React.Component {
@@ -11,8 +11,8 @@ class Question extends React.Component {
         }
     }
 
-    componentDidMount(){
-        this.setState({rating: this.props.rating})
+    componentDidMount() {
+        this.setState({ rating: this.props.rating })
     }
 
     onStarClicked = (rating) => {
@@ -24,11 +24,15 @@ class Question extends React.Component {
     }
 
     render() {
+        let nextButtonToBeRendered = <Link className="question__button" to={this.props.next}> Volgende</Link>
+        if(this.props.last === true){
+            nextButtonToBeRendered = <Link onClick={this.props.onLast} className="question__button" to={this.props.next}> Volgende</Link>
+        }
         let starsArray = [];
-        for(let i = 1; i <= this.state.rating; i++){
+        for (let i = 1; i <= this.state.rating; i++) {
             starsArray.push(<i key={i} onClick={() => this.onStarClicked(i)} className="question__star fa-solid fa-star"></i>);
         }
-        for(let i = this.state.rating + 1; i <= 5; i++){
+        for (let i = this.state.rating + 1; i <= 5; i++) {
             starsArray.push(<i key={i} onClick={() => this.onStarClicked(i)} className="question__star fa-regular fa-star"></i>);
         }
         return (
@@ -39,11 +43,12 @@ class Question extends React.Component {
                 <section className="question__section">
                     <p className="question__text">(1 ster staat voor zéér slecht, 5 sterren staan voor zéér goed)</p>
                     <div className="question__stars">
-                        {starsArray}                                         </div>
+                        {starsArray}
+                    </div>
                 </section>
                 <footer className="question__footer">
-                    <Link className="question__button" to={this.props.previous}>Volgende</Link>
-                    <Link className="question__button" to={this.props.next}> Volgende</Link>
+                    <Link className="question__button" to={this.props.previous}>Vorige</Link>
+                  {nextButtonToBeRendered}
                 </footer>
             </article>
         )
